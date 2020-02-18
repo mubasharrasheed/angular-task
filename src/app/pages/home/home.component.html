@@ -1,0 +1,92 @@
+<div class="homepage">
+  <div class="container h-100">
+    <div class="row pt-5 pb-5 justify-content-center">
+      <button type="button" class="btn btn-primary btn-lg btn-light blue" (click)="logout()">Logout</button>
+    </div>
+    <div class="h-100 align-self-center">
+      <div class="row pt-2 pb-2">
+        <form [formGroup]="eventForm" class="w-100">
+          <div class="form-row align-items-center">
+            <div class="col-sm-3 p-2">
+              <label class="sr-only" for="type">Type</label>
+              <input type="text" class="form-control" id="type" placeholder="Type">
+            </div>
+            <div class="col-sm-3 p-2">
+              <label class="sr-only" for="userId">Id</label>
+              <input type="text" class="form-control" id="userId" placeholder="User ID">
+            </div>
+            <div class="col-sm-3 p-2">
+              <label class="sr-only" for="time">Timestamp</label>
+              <input type="text" class="form-control" id="time" placeholder="Timestamp">
+            </div>
+            <div class="col-sm-3 p-2">
+              <button type="submit" class="btn btn-primary btn-block btn-light blue" [disabled]="!eventForm.valid" (click)="addEvent()">Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row pt-2 pb-2">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Type</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Timestamp</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Login</td>
+            <td>12</td>
+            <td>1582002369000</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Logout</td>
+            <td>09</td>
+            <td>1582002229000</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Logout</td>
+            <td>71</td>
+            <td>1582002380000</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row pt-5 pb-5 justify-content-center">
+        <button [disabled]="showCount" type="button" class="btn btn-primary btn-lg btn-light blue" (click)="activeUserCount()">User Count</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="homepage">
+  <div class="container h-100">
+    <div class="row pt-2 pb-2" *ngIf="showCount">
+      Active Users Count By Hour
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Hour</th>
+          <th scope="col">Active Users Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let uc of usersCount;let i = index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{uc[0] === 1 ? uc[0] + 'st uc' : uc[0] === 2 ? uc[0] + 'nd uc' : uc[0] === 3 ? uc[0] + 'rd uc' : uc[0] + 'th uc'}}</td>
+          <td>{{uc[1]}} users</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
